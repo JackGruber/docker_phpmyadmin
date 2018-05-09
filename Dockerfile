@@ -1,5 +1,3 @@
-#FROM alpine:3.6
-#FROM arm32v6/alpine
 FROM alpine
 
 # Install dependencies
