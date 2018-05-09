@@ -5,6 +5,7 @@ RUN apk add --no-cache \
     nginx \
     php7 \
     php7-bz2 \
+    php7-ctype \
     php7-curl \
     php7-fpm \
     php7-gd \
@@ -30,7 +31,7 @@ COPY run.sh /run.sh
 RUN chmod u+rwx /run.sh
 
 # Calculate download URL
-ENV VERSION 4.7.9
+ENV VERSION 4.8.0.1
 ENV URL https://files.phpmyadmin.net/phpMyAdmin/${VERSION}/phpMyAdmin-${VERSION}-all-languages.tar.gz
 LABEL version=$VERSION
 
@@ -54,7 +55,9 @@ RUN set -x \
     && find /www -type f -exec chmod 640 {} \;
 
 # Add directory for sessions to allow session persistence
-RUN mkdir /sessions
+RUN mkdir /sessions \
+    && mkdir -p /www/tmp \
+    && chmod -R 777 /www/tmp
 
 # We expose phpMyAdmin on port 80
 EXPOSE 80
