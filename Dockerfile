@@ -1,8 +1,25 @@
 #FROM alpine:3.6
-FROM arm32v6/alpine
+#FROM arm32v6/alpine
+FROM alpine
 
 # Install dependencies
-RUN apk add --no-cache php7-session php7-mysqli php7-mbstring php7-xml php7-gd php7-zlib php7-bz2 php7-zip php7-openssl php7-curl php7-opcache php7-json nginx php7-fpm supervisor
+RUN apk add --no-cache \
+    nginx \
+    php7 \
+    php7-bz2 \
+    php7-curl \
+    php7-fpm \
+    php7-gd \
+    php7-json \
+    php7-mbstring \
+    php7-mysqli \
+    php7-opcache \
+    php7-openssl \
+    php7-session \
+    php7-xml \
+    php7-zip \
+    php7-zlib \
+    supervisor
 
 # Include keyring to verify download
 COPY phpmyadmin.keyring /
