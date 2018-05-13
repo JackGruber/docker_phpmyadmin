@@ -14,6 +14,5 @@ docker build -t $REPO:$ARCH \
 
 
 if [ "$1" = "push" ]; then
-  docker rmi $REPO:test
   docker push $REPO:$ARCH
 fi
