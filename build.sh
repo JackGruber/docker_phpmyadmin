@@ -1,41 +1,19 @@
 #!/bin/sh
 REPO="jackgruber/phpmyadmin"
 
-arch=$( uname -m )
+ARCH=$(dpkg --print-architecture)
 
 if [ "$1" = "test" ]; then
-  arch="test"
+  ARCH="test"
 fi
 
-docker build -t $REPO:$arch .
+docker build -t $REPO:$ARCH \
+--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+--build-arg VCS_REF=`git rev-parse --short HEAD` \
+--build-arg BRANCH=`git rev-parse --abbrev-ref HEAD` .
 
-if [ "$1" != "test" ]; then
-  case $arch in
-  armv7l)
-    docker tag $REPO:$arch $REPO:rpi
-    docker tag $REPO:$arch $REPO:rpi3
-    docker tag $REPO:$arch $REPO:arm
 
-    # for history
-    docker tag $REPO:$arch $REPO'_rpi'
-    if [ "$1" = "push" ]; then
-      docker push $REPO'_rpi'
-    fi
-    ;;
-  armv6l)
-    docker tag $REPO:$arch $REPO:rpi
-    docker tag $REPO:$arch $REPO:rpizw
-    docker tag $REPO:$arch $REPO:arm
-    ;;
-  x86_64)
-    ;;
-  *)
-    echo "Unknown arch $( uname -m )"
-    exit 1
-  ;;
-  esac
-
-  if [ "$1" = "push" ]; then
-    docker push $REPO
-  fi
+if [ "$1" = "push" ]; then
+  docker rmi $REPO:test
+  docker push $REPO:$ARCH
 fi
