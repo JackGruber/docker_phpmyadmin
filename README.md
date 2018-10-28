@@ -1,6 +1,6 @@
-
-# Raspberry Docker image for phpMyAdmin
+# phpMyAdmin Docker image based on Alpine
 Based on the official Project
 https://github.com/phpmyadmin/docker
 
-[Alpine](https://hub.docker.com/_/alpine/) is used as base image, so the image runs on ARM and x64 systems. 
+[Alpine](https://hub.docker.com/_/alpine/) is used as base image, so the image runs on ARM and x64 systems.
+
