@@ -5,6 +5,8 @@ services:
   
 before_install:
   - docker build -t phpmyadmin .
-  - docker run -d -p 80:80 phpmyadmin
+  - docker run -d -p 80:80 --name phpmyadmin phpmyadmin
   - docker ps -a
   
+script:
+  - docker ps | grep -q phpmyadmin
