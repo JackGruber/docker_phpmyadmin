@@ -5,6 +5,6 @@ services:
   
 before_install:
   - docker build -t phpmyadmin .
-  - docker run -d -p 80:80 phpmyadmin:test
+  - docker run -d -p 80:80 phpmyadmin
   - docker ps -a
   
