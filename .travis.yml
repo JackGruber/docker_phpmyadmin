@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+  
+before_install:
+  - docker build -t phpmyadmin .
+  - docker run -d -p 80:80 phpmyadmin:test
+  - docker ps -a
+  
