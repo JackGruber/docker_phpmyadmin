@@ -41,6 +41,7 @@ RUN set -ex; \
     \
     export GNUPGHOME="$(mktemp -d)"; \
     export GPGKEY="3D06A59ECE730EB71B511C17CE752F178259BD92"; \
+    echo standard-resolver > ${GNUPGHOME}/dirmngr.conf; \
     curl --output phpMyAdmin.tar.gz --location $URL; \
     curl --output phpMyAdmin.tar.gz.asc --location $URL.asc; \
     gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPGKEY" \
