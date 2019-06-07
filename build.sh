@@ -2,6 +2,7 @@
 REPO="jackgruber/phpmyadmin"
 
 ARCH=$(dpkg --print-architecture)
+SW_VERSION=$(cat Dockerfile | grep "ENV VERSION" | cut -d ' ' -f 3)
 
 if [ "$1" = "manifest" ]; then
   DIR="${REPO/\//_}"
@@ -25,10 +26,13 @@ else
   --build-arg BRANCH=`git rev-parse --abbrev-ref HEAD` .
 
   docker tag $REPO $REPO:$ARCH
+  docker tag $REPO $REPO:${SW_VERSION}-$ARCH
 
   if [ "$1" = "push" ]; then
     docker rmi $REPO:test
+    docker rmi $REPO:${SW_VERSION}-test
     docker push $REPO:latest
     docker push $REPO:$ARCH
+    docker push $REPO:${SW_VERSION}-$ARCH
   fi
 fi
