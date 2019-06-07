@@ -6,6 +6,8 @@ SW_VERSION=$(cat Dockerfile | grep "ENV VERSION" | cut -d ' ' -f 3)
 
 if [ "$1" = "manifest" ]; then
   DIR="${REPO/\//_}"
+
+  # latest
   rm -rf ~/.docker/manifests/docker.io_${DIR}-latest/
   docker manifest create \
     $REPO:latest \
@@ -13,7 +15,16 @@ if [ "$1" = "manifest" ]; then
     $REPO:amd64
 
   docker manifest push $REPO:latest
+  docker manifest inspect $REPO
 
+  # version
+  rm -rf ~/.docker/manifests/docker.io_${DIR}-${SW_VERSION}/
+  docker manifest create \
+    $REPO:${SW_VERSION} \
+    $REPO:${SW_VERSION}-armhf \
+    $REPO:${SW_VERSION}-amd64
+
+  docker manifest push $REPO:${SW_VERSION}
   docker manifest inspect $REPO
 else
   if [ "$1" = "test" ]; then
