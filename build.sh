@@ -28,6 +28,7 @@ else
 
   if [ "$1" = "push" ]; then
     docker rmi $REPO:test
-    docker push $REPO
+    docker push $REPO:latest
+    docker push $REPO:$ARCH
   fi
 fi
