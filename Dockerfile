@@ -44,11 +44,11 @@ RUN set -ex; \
     echo standard-resolver > ${GNUPGHOME}/dirmngr.conf; \
     curl --output phpMyAdmin.tar.gz --location $URL; \
     curl --output phpMyAdmin.tar.gz.asc --location $URL.asc; \
-    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPGKEY" \
-        || gpg --keyserver ipv4.pool.sks-keyservers.net --recv-keys "$GPGKEY" \
-        || gpg --keyserver keys.gnupg.net --recv-keys "$GPGKEY" \
-        || gpg --keyserver pgp.mit.edu --recv-keys "$GPGKEY" \
-        || gpg --keyserver keyserver.pgp.com --recv-keys "$GPGKEY"; \
+    gpg --batch --keyserver ha.pool.sks-keyservers.net --recv-keys "$GPGKEY" \
+        || gpg --batch --keyserver ipv4.pool.sks-keyservers.net --recv-keys "$GPGKEY" \
+        || gpg --batch --keyserver keys.gnupg.net --recv-keys "$GPGKEY" \
+        || gpg --batch --keyserver pgp.mit.edu --recv-keys "$GPGKEY" \
+        || gpg --batch --keyserver keyserver.pgp.com --recv-keys "$GPGKEY"; \
     gpg --batch --verify phpMyAdmin.tar.gz.asc phpMyAdmin.tar.gz; \
     rm -rf "$GNUPGHOME"; \
     tar xzf phpMyAdmin.tar.gz; \
