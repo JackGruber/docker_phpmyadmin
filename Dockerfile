@@ -29,7 +29,7 @@ COPY run.sh /run.sh
 RUN chmod u+rwx /run.sh
 
 # Calculate download URL
-ENV VERSION 5.0.1
+ENV VERSION 5.0.2
 ENV URL https://files.phpmyadmin.net/phpMyAdmin/${VERSION}/phpMyAdmin-${VERSION}-all-languages.tar.gz
 LABEL version=$VERSION
 
