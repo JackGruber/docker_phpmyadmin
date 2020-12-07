@@ -34,5 +34,7 @@ docker run --name myadmin -d -e PMA_HOST=dbhost -p 8080:80 jackgruber/phpmyadmin
 ```
 
 ## Links
+* [Docker Hub phpmyadmin](https://hub.docker.com/_/phpmyadmin)
+* [GitHub Repro of official phpMyAdmin docker](https://github.com/phpmyadmin/docker)
 * [jackgruber/phpmyadmin - Docker Hub](https://hub.docker.com/r/jackgruber/phpmyadmin)
 * [Alpine - Docker Hub](https://hub.docker.com/_/alpine/)
