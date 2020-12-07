@@ -77,7 +77,7 @@ ARG BUILD_DATE
 ARG VCS_REF
 ARG BRANCH
 LABEL org.label-schema.build-date=$BUILD_DATE \
-      org.label-schema.name="dustcloud" \
+      org.label-schema.name="phpmyadmin" \
       org.label-schema.description="Docker image for phpMyAdmin based on Alpine" \
       org.label-schema.url="https://github.com/JackGruber/docker_phpmyadmin" \
       org.label-schema.vcs-ref=$VCS_REF \
